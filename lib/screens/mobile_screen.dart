@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/constants.dart';
 import 'package:portfolio/utils/double_to_gap.dart';
 import 'package:portfolio/utils/int_to_gap.dart';
+import 'package:portfolio/widgets/shared/image_profile.dart';
 
 import '../widgets/shared/app_footer.dart';
 import '../widgets/shared/body_decoration.dart';
@@ -87,21 +88,7 @@ class AboutMeMobile extends StatelessWidget {
         30.toVerticalGap,
         Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Theme.of(context).colorScheme.secondary,
-                  width: 4,
-                ),
-              ),
-              child: const CircleAvatar(
-                radius: 100,
-                backgroundImage: AssetImage(
-                  'assets/images/profile_Image.jpeg',
-                ),
-              ),
-            ),
+            const ImageProfile(),
             20.toVerticalGap,
             Padding(
               padding: const EdgeInsets.all(16.0),

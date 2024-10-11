@@ -5,6 +5,7 @@ import 'package:portfolio/utils/double_to_gap.dart';
 import 'package:portfolio/utils/int_to_gap.dart';
 import 'package:portfolio/widgets/shared/app_footer.dart';
 import 'package:portfolio/widgets/shared/hablities_section.dart';
+import 'package:portfolio/widgets/shared/image_profile.dart';
 
 import '../widgets/shared/body_decoration.dart';
 import '../widgets/shared/circle_decoration.dart';
@@ -91,21 +92,7 @@ class AboutMeDesktop extends StatelessWidget {
         30.toVerticalGap,
         Row(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Theme.of(context).colorScheme.secondary,
-                  width: 4,
-                ),
-              ),
-              child: const CircleAvatar(
-                radius: 100,
-                backgroundImage: AssetImage(
-                  'assets/images/profile_Image.jpeg',
-                ),
-              ),
-            ),
+            const ImageProfile(),
             20.toHorizontalGap,
             Expanded(
               child: Padding(

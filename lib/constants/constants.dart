@@ -143,6 +143,8 @@ class Constants {
               'https://www.figma.com/design/VXqSW0L8sWF0pSLGmiEf8u/Shop-Mate?node-id=0-1&t=ClaNV7U23HCDyKgr-1',
         ),
       ];
+
+  static const kProfileImage = AssetImage('assets/images/profile_Image.jpeg');
 }
 
 class AppColors {
