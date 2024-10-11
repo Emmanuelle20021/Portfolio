@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/constants.dart';
 import 'package:portfolio/utils/double_to_gap.dart';
 import 'package:portfolio/utils/int_to_gap.dart';
-import 'package:portfolio/widgets/shared/image_profile.dart';
 
+import '../utils/injector.dart';
 import '../widgets/shared/app_footer.dart';
 import '../widgets/shared/body_decoration.dart';
 import '../widgets/shared/circle_decoration.dart';
@@ -88,7 +88,7 @@ class AboutMeMobile extends StatelessWidget {
         30.toVerticalGap,
         Column(
           children: [
-            const ImageProfile(),
+            Injector.of(context).profileImage,
             20.toVerticalGap,
             Padding(
               padding: const EdgeInsets.all(16.0),

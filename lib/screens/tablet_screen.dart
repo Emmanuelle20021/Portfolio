@@ -6,9 +6,9 @@ import 'package:portfolio/utils/int_to_gap.dart';
 import 'package:portfolio/widgets/shared/app_footer.dart';
 import 'package:portfolio/widgets/shared/hablities_section.dart';
 
+import '../utils/injector.dart';
 import '../widgets/shared/body_decoration.dart';
 import '../widgets/shared/circle_decoration.dart';
-import '../widgets/shared/image_profile.dart';
 import '../widgets/shared/projects_section.dart';
 
 class TabletScreen extends StatelessWidget {
@@ -90,7 +90,7 @@ class AboutMeTablet extends StatelessWidget {
         30.toVerticalGap,
         Row(
           children: [
-            const ImageProfile(),
+            Injector.of(context).profileImage,
             20.toHorizontalGap,
             Expanded(
               child: Padding(
