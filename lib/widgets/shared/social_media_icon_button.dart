@@ -18,7 +18,7 @@ class SocialMediaIconButton extends StatelessWidget {
       builder: (context, followLink) => IconButton(
         icon: Icon(
           icon,
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
         onPressed: () => _launchURL(url),
         color: Theme.of(context).colorScheme.secondary,

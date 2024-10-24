@@ -19,24 +19,7 @@ class DesktopScreen extends StatelessWidget {
     final double pad = MediaQuery.of(context).size.width * 0.1;
     final double verticalGap = MediaQuery.of(context).size.height * 0.05;
     return Scaffold(
-      appBar: Constants.kAppBar(
-        children: [
-          AutoSizeText(
-            'Javier Emmanuelle Hipólito Mora',
-            minFontSize: 20,
-            maxFontSize: 26,
-            maxLines: 1,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          AutoSizeText(
-            'Ingeniero de Software',
-            maxLines: 1,
-            minFontSize: 16,
-            maxFontSize: 18,
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-        ],
-      ),
+      appBar: Constants.kAppBar(),
       body: Stack(
         children: [
           const Positioned(
@@ -85,11 +68,6 @@ class AboutMeDesktop extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          'Sobre mi',
-          style: Theme.of(context).textTheme.displaySmall,
-        ),
-        30.toVerticalGap,
         Row(
           children: [
             Injector.of(context).profileImage,
@@ -97,9 +75,29 @@ class AboutMeDesktop extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  Constants.kAboutMeText,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      'Javier Emmanuelle Hipólito Mora',
+                      minFontSize: 22,
+                      maxFontSize: 26,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    AutoSizeText(
+                      'Ingeniero de Software',
+                      maxLines: 1,
+                      minFontSize: 20,
+                      maxFontSize: 22,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    20.toVerticalGap,
+                    Text(
+                      Constants.kAboutMeText,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
                 ),
               ),
             ),

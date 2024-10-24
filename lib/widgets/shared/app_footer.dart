@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
-import 'package:portfolio/widgets/shared/social_media_icon_button.dart';
 
 class AppFooter extends StatelessWidget {
   const AppFooter({
@@ -24,14 +22,6 @@ class AppFooter extends StatelessWidget {
               maxLines: 3,
               style: Theme.of(context).textTheme.titleSmall,
             ),
-          ),
-          const SocialMediaIconButton(
-            icon: BoxIcons.bxl_github,
-            url: 'https://github.com/Emmanuelle20021',
-          ),
-          const SocialMediaIconButton(
-            icon: BoxIcons.bxl_linkedin,
-            url: 'https://www.linkedin.com/in/javier-emmanuelle-hipolito-mora',
           ),
         ],
       ),

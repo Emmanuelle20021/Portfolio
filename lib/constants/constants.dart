@@ -9,6 +9,7 @@ import '../widgets/shared/animated/animate_color_icon.dart';
 import '../widgets/shared/habilities_card.dart';
 import '../widgets/shared/icon_with_text.dart';
 import '../widgets/shared/project_card.dart';
+import '../widgets/shared/social_media_icon_button.dart';
 
 class Constants {
   Constants._();
@@ -16,21 +17,37 @@ class Constants {
   static const String kAppName = 'Emma Mora Dev';
   static List<Widget> kActionsAppBar = [
     BlocBuilder<ThemeCubit, ThemeData>(
-      builder: (context, theme) => AnimateColorIcon(
-        icon: Icons.light_mode,
-        startColor:
-            theme.brightness == Brightness.dark ? Colors.white : Colors.black,
-        endColor:
-            theme.brightness == Brightness.dark ? Colors.black : Colors.white,
+      builder: (context, theme) => Row(
+        children: [
+          const SocialMediaIconButton(
+            icon: BoxIcons.bxl_github,
+            url: 'https://github.com/Emmanuelle20021',
+          ),
+          20.toHorizontalGap,
+          const SocialMediaIconButton(
+            icon: BoxIcons.bxl_linkedin,
+            url: 'https://www.linkedin.com/in/javier-emmanuelle-hipolito-mora',
+          ),
+          20.toHorizontalGap,
+          AnimateColorIcon(
+            icon: Icons.light_mode,
+            startColor: theme.brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+            endColor: theme.brightness == Brightness.dark
+                ? Colors.black
+                : Colors.white,
+          ),
+        ],
       ),
     ),
   ];
-  static AppBar kAppBar({required List<Widget> children}) => AppBar(
+  static AppBar kAppBar({List<Widget>? children}) => AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: children,
+          children: children ?? const [],
         ),
         actions: kActionsAppBar,
         notificationPredicate: (notification) => false,
@@ -113,6 +130,11 @@ class Constants {
               title: 'GitLab',
               icon: BoxIcons.bxl_gitlab,
             ),
+          ],
+        ),
+        HabilitiesCardWidget(
+          title: 'Diseño de interfaces',
+          children: [
             10.toVerticalGap,
             const IconWithText(
               title: 'Figma',

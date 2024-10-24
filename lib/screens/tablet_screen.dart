@@ -19,24 +19,7 @@ class TabletScreen extends StatelessWidget {
     final double verticalGap = MediaQuery.of(context).size.height * 0.05;
 
     return Scaffold(
-      appBar: Constants.kAppBar(
-        children: [
-          AutoSizeText(
-            'Javier Emmanuelle Hipólito Mora',
-            minFontSize: 18,
-            maxFontSize: 22,
-            maxLines: 1,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          AutoSizeText(
-            'Ingeniero de Software',
-            maxLines: 1,
-            minFontSize: 14,
-            maxFontSize: 16,
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-        ],
-      ),
+      appBar: Constants.kAppBar(),
       body: Stack(
         children: [
           const Positioned(
@@ -83,11 +66,6 @@ class AboutMeTablet extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          'Sobre mi',
-          style: Theme.of(context).textTheme.displaySmall,
-        ),
-        30.toVerticalGap,
         Row(
           children: [
             Injector.of(context).profileImage,
@@ -95,9 +73,29 @@ class AboutMeTablet extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  Constants.kAboutMeText,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      'Javier Emmanuelle Hipólito Mora',
+                      minFontSize: 22,
+                      maxFontSize: 28,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    AutoSizeText(
+                      'Ingeniero de Software',
+                      maxLines: 1,
+                      minFontSize: 18,
+                      maxFontSize: 24,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    20.toVerticalGap,
+                    Text(
+                      Constants.kAboutMeText,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
                 ),
               ),
             ),
