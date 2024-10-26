@@ -8,6 +8,9 @@ class ResponsiveLayout extends StatefulWidget {
     required this.mobileLayout,
   });
 
+  static int get desktopSize => 1200;
+  static int get tabletSize => 800;
+
   final Widget desktopLayout;
   final Widget tabletLayout;
   final Widget mobileLayout;
@@ -16,18 +19,15 @@ class ResponsiveLayout extends StatefulWidget {
   State<ResponsiveLayout> createState() => _ResponsiveLayoutState();
 }
 
-int get desktopSize => 1200;
-int get tabletSize => 800;
-
 class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > desktopSize) {
+        if (constraints.maxWidth > ResponsiveLayout.desktopSize) {
           return widget.desktopLayout;
-        } else if (constraints.maxWidth > tabletSize &&
-            constraints.maxWidth < desktopSize) {
+        } else if (constraints.maxWidth > ResponsiveLayout.tabletSize &&
+            constraints.maxWidth < ResponsiveLayout.tabletSize) {
           return widget.tabletLayout;
         } else {
           return widget.mobileLayout;

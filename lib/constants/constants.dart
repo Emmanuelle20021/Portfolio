@@ -144,6 +144,12 @@ class Constants {
         ),
       ];
 
+  static const List<String> kSections = [
+    'Sobre mi',
+    'Habilidades',
+    'Proyectos'
+  ];
+
   static List<Widget> get kProjects => [
         const ProjectCard(
           title: 'Vitium',
