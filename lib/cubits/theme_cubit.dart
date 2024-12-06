@@ -5,7 +5,7 @@ import 'package:portfolio/constants/constants.dart';
 class ThemeCubit extends Cubit<ThemeData> {
   ThemeCubit() : super(_darkTheme);
 
-  static final _lightTheme = AppThemes.lightTheme;
+  static final _lightTheme = AppThemes.darkTheme;
   static final _darkTheme = AppThemes.darkTheme;
 
   void toggleTheme() {

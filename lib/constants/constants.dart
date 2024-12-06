@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:portfolio/cubits/theme_cubit.dart';
 import 'package:portfolio/utils/int_to_gap.dart';
 
-import '../widgets/shared/animated/animate_color_icon.dart';
 import '../widgets/shared/habilities_card.dart';
 import '../widgets/shared/icon_with_text.dart';
 import '../widgets/shared/project_card.dart';
@@ -14,44 +11,31 @@ import '../widgets/shared/social_media_icon_button.dart';
 class Constants {
   Constants._();
 
+  static const String kSharkPath = 'assets/parallax/Shark.svg';
+  static const String kProfileImagePath = 'assets/images/profile_Image.png';
+  static const String kVitiumBannerPath = 'assets/images/vitium_banner.png';
+  static const String kStoreMatePath = 'assets/images/store_mate.png';
+  static const String kRockPath = 'assets/parallax/Rock.svg';
+  static const String kKelp1Path = 'assets/parallax/kelp_1.svg';
+  static const String kKelp2Path = 'assets/parallax/kelp_2.svg';
+  static const String kKelpGroupPath = 'assets/parallax/kelp_group.svg';
+  static const String kRockGroupPath = 'assets/parallax/rock_group.svg';
+
   static const String kAppName = 'Emma Mora Dev';
-  static List<Widget> kActionsAppBar = [
-    BlocBuilder<ThemeCubit, ThemeData>(
-      builder: (context, theme) => Row(
-        children: [
-          const SocialMediaIconButton(
-            icon: BoxIcons.bxl_github,
-            url: 'https://github.com/Emmanuelle20021',
-          ),
-          20.toHorizontalGap,
-          const SocialMediaIconButton(
-            icon: BoxIcons.bxl_linkedin,
-            url: 'https://www.linkedin.com/in/javier-emmanuelle-hipolito-mora',
-          ),
-          20.toHorizontalGap,
-          AnimateColorIcon(
-            icon: Icons.light_mode,
-            startColor: theme.brightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
-            endColor: theme.brightness == Brightness.dark
-                ? Colors.black
-                : Colors.white,
-          ),
-        ],
+  static Widget kActionsAppBar = Row(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      const SocialMediaIconButton(
+        icon: BoxIcons.bxl_github,
+        url: 'https://github.com/Emmanuelle20021',
       ),
-    ),
-  ];
-  static AppBar kAppBar({List<Widget>? children}) => AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: children ?? const [],
-        ),
-        actions: kActionsAppBar,
-        notificationPredicate: (notification) => false,
-      );
+      10.toHorizontalGap,
+      const SocialMediaIconButton(
+        icon: BoxIcons.bxl_linkedin,
+        url: 'https://www.linkedin.com/in/javier-emmanuelle-hipolito-mora',
+      ),
+    ],
+  );
 
   static const String kAboutMeText =
       'Soy un desarrollador Flutter apasionado por crear aplicaciones móviles innovadoras y eficientes. Con experiencia en tecnologías como Dart, Node.js, Firebase, SQL y Git, me especializo en desarrollar soluciones robustas y escalables. Mi enfoque se centra en la creación de interfaces de usuario intuitivas y en la optimización del rendimiento de las aplicaciones.';
@@ -146,8 +130,9 @@ class Constants {
 
   static const List<String> kSections = [
     'Sobre mi',
-    'Habilidades',
-    'Proyectos'
+    'Proyectos',
+    'Experiencia',
+    'Contacto',
   ];
 
   static List<Widget> get kProjects => [
@@ -171,143 +156,112 @@ class Constants {
               'https://www.figma.com/design/VXqSW0L8sWF0pSLGmiEf8u/Shop-Mate?node-id=0-1&t=ClaNV7U23HCDyKgr-1',
         ),
       ];
+}
 
-  static const kProfileImage = AssetImage('assets/images/profile_Image.jpeg');
+class AppTextStyles {
+  // Tamaños de texto
+  static const double heading1 = 32.0;
+  static const double heading2 = 24.0;
+  static const double heading3 = 20.0;
+  static const double bodyText = 16.0;
+  static const double button = 16.0;
+  static const double caption = 14.0;
+}
+
+class AppSpacing {
+  // Espaciados y padding
+  static const double small = 8.0;
+  static const double medium = 16.0;
+  static const double large = 24.0;
+  static const double extraLarge = 32.0;
+  static const double cardPadding =
+      16.0; // Padding estándar para tarjetas y contenedores
+  static const double sectionSpacing = 32.0; // Espaciado entre secciones
 }
 
 class AppColors {
-  // Colores generales
-  static const Color lightPrimary = Color(0xFF007BFF); // Azul moderado
-  static const Color lightSecondary = Color(0xFF32CD32); // Verde lima
-  static const Color lightScaffoldBackground =
-      Color(0xFFF3F3F3); // Gris claro suave
-  static const Color lightText = Color(0xFF0F0F0F); // Negro suave para texto
-
-  static const Color darkPrimary = Color(0xFF607D8B); // Azul grisáceo
-  static const Color darkSecondary = Color(0xFFFFA726); // Naranja acentuado
-  static const Color darkScaffoldBackground =
-      Color(0xFF121212); // Gris oscuro (evitando negro puro)
-  static const Color darkText = Color(0xFFF3F3F3); // Blanco suave para texto
-
-  // Colores de acento
-  static const Color accentGreen = Color(0xFF32CD32); // Verde lima neón
-  static const Color accentOrange = Color(0xFFFFA726); // Naranja brillante
-  static const Color drawerScrim =
-      Color(0x8A000000); // Negro con transparencia para el Drawer
+  // Colores para Dark Theme
+  static const Color background = Color(0xFF0A2239);
+  static const Color surface = Color(0xFF1E4C6B);
+  static const Color primaryText = Color(0xFFF1F1F1);
+  static const Color secondaryText = Color(0xFFA2D2FF);
+  static const Color accent = Color(0xFF5CDBE6);
+  static const Color border = Color(0xFF406882);
+  static const Color sharks = Color(0xFF1B3C59);
+  static const Color kelpDark = Color(0xFF2C665E);
+  static const Color kelpLight = Color(0xFF3FA896);
 }
 
 class AppThemes {
-  static ThemeData get lightTheme => ThemeData(
-        brightness: Brightness.light,
-        primaryColor: AppColors.lightPrimary,
-        colorScheme: const ColorScheme.light(
-          primary: AppColors.lightPrimary,
-          secondary: AppColors.lightSecondary,
+  static ThemeData get darkTheme => ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: AppColors.accent,
+        colorScheme: const ColorScheme.dark(
+          primary: AppColors.accent,
+          surface: AppColors.surface,
+          onPrimary: AppColors.primaryText,
+          onSurface: AppColors.secondaryText,
         ),
-        scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
+        scaffoldBackgroundColor: AppColors.background,
         appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.lightPrimary,
-          iconTheme: IconThemeData(color: AppColors.lightText),
+          backgroundColor: AppColors.surface,
+          iconTheme: IconThemeData(color: AppColors.primaryText),
+          titleTextStyle: TextStyle(
+            color: AppColors.primaryText,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        iconTheme: const IconThemeData(color: AppColors.lightText),
+        iconTheme: const IconThemeData(color: AppColors.secondaryText),
         textTheme: GoogleFonts.poppinsTextTheme(
           const TextTheme(
             displayLarge: TextStyle(
                 fontSize: 32.0,
                 fontWeight: FontWeight.bold,
-                color: AppColors.lightText),
-            displayMedium:
-                TextStyle(fontSize: 28.0, color: AppColors.lightText),
-            displaySmall:
-                TextStyle(fontSize: 24.0, color: AppColors.lightSecondary),
-            headlineLarge:
-                TextStyle(fontSize: 22.0, color: AppColors.lightText),
+                color: AppColors.primaryText),
+            displayMedium: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primaryText),
+            displaySmall: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.w500,
+                color: AppColors.secondaryText),
+            headlineLarge: TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primaryText),
             headlineMedium:
-                TextStyle(fontSize: 20.0, color: AppColors.lightText),
+                TextStyle(fontSize: 20.0, color: AppColors.primaryText),
             headlineSmall:
-                TextStyle(fontSize: 18.0, color: AppColors.lightText),
+                TextStyle(fontSize: 18.0, color: AppColors.primaryText),
             titleLarge: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: AppColors.lightText),
-            titleMedium: TextStyle(fontSize: 14.0, color: AppColors.lightText),
-            titleSmall: TextStyle(fontSize: 12.0, color: AppColors.lightText),
-            bodyLarge: TextStyle(fontSize: 16.0, color: AppColors.lightText),
-            bodyMedium: TextStyle(fontSize: 14.0, color: AppColors.lightText),
-            bodySmall: TextStyle(fontSize: 12.0, color: AppColors.lightText),
+                color: AppColors.primaryText),
+            titleMedium:
+                TextStyle(fontSize: 14.0, color: AppColors.primaryText),
+            titleSmall: TextStyle(fontSize: 12.0, color: AppColors.primaryText),
+            bodyLarge: TextStyle(fontSize: 16.0, color: AppColors.primaryText),
+            bodyMedium: TextStyle(fontSize: 14.0, color: AppColors.primaryText),
+            bodySmall: TextStyle(fontSize: 12.0, color: AppColors.primaryText),
             labelLarge: TextStyle(
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
-                color: AppColors.accentGreen),
-            labelMedium:
-                TextStyle(fontSize: 12.0, color: AppColors.accentGreen),
-            labelSmall: TextStyle(fontSize: 10.0, color: AppColors.accentGreen),
+                color: AppColors.accent),
+            labelMedium: TextStyle(fontSize: 12.0, color: AppColors.accent),
+            labelSmall: TextStyle(fontSize: 10.0, color: AppColors.accent),
           ),
         ),
         buttonTheme: const ButtonThemeData(
-          buttonColor: AppColors.accentGreen,
+          buttonColor: AppColors.accent,
           textTheme: ButtonTextTheme.primary,
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: AppColors.accentGreen,
+          backgroundColor: AppColors.accent,
         ),
         drawerTheme: const DrawerThemeData(
-          backgroundColor: AppColors.lightScaffoldBackground,
-          scrimColor: AppColors.drawerScrim,
-        ),
-      );
-
-  static ThemeData get darkTheme => ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: AppColors.darkPrimary,
-        colorScheme: const ColorScheme.dark(
-          primary: AppColors.darkPrimary,
-          secondary: AppColors.darkSecondary,
-        ),
-        scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.darkPrimary,
-          iconTheme: IconThemeData(color: AppColors.darkText),
-        ),
-        iconTheme: const IconThemeData(color: AppColors.darkText),
-        textTheme: GoogleFonts.robotoTextTheme(
-          const TextTheme(
-            displayLarge: TextStyle(
-                fontSize: 32.0,
-                fontWeight: FontWeight.bold,
-                color: AppColors.darkText),
-            displayMedium: TextStyle(fontSize: 28.0, color: AppColors.darkText),
-            displaySmall:
-                TextStyle(fontSize: 24.0, color: AppColors.darkSecondary),
-            headlineLarge: TextStyle(fontSize: 22.0, color: AppColors.darkText),
-            headlineMedium:
-                TextStyle(fontSize: 20.0, color: AppColors.darkText),
-            headlineSmall: TextStyle(fontSize: 18.0, color: AppColors.darkText),
-            titleLarge: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: AppColors.darkText),
-            titleMedium: TextStyle(fontSize: 14.0, color: AppColors.darkText),
-            titleSmall: TextStyle(fontSize: 12.0, color: AppColors.darkText),
-            bodyLarge: TextStyle(fontSize: 16.0, color: AppColors.darkText),
-            bodyMedium: TextStyle(fontSize: 14.0, color: AppColors.darkText),
-            bodySmall: TextStyle(fontSize: 12.0, color: AppColors.darkText),
-            labelLarge: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-                color: AppColors.accentOrange),
-            labelMedium:
-                TextStyle(fontSize: 12.0, color: AppColors.accentOrange),
-            labelSmall:
-                TextStyle(fontSize: 10.0, color: AppColors.accentOrange),
-          ),
-        ),
-        buttonTheme: const ButtonThemeData(
-          buttonColor: AppColors.accentOrange,
-          textTheme: ButtonTextTheme.primary,
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: AppColors.accentOrange,
+          backgroundColor: AppColors.surface,
         ),
       );
 }

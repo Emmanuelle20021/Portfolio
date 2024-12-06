@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 
 class ImageProfile extends StatelessWidget {
   const ImageProfile({
@@ -7,16 +8,24 @@ class ImageProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(
-          color: Theme.of(context).colorScheme.secondary,
-          width: 4,
+        border: GradientBoxBorder(
+          gradient: LinearGradient(
+            colors: [
+              theme.colorScheme.onSurface,
+              theme.scaffoldBackgroundColor,
+            ],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          ),
         ),
       ),
       child: const CircleAvatar(
         radius: 100,
+        backgroundColor: Colors.transparent,
         backgroundImage: AssetImage('assets/images/profile_Image.png'),
       ),
     );
