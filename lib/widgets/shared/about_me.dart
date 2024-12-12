@@ -4,10 +4,22 @@ import 'package:portfolio/utils/int_to_gap.dart';
 
 import '../../constants/constants.dart';
 
-class AboutMe extends StatelessWidget {
+class AboutMe extends StatefulWidget {
   const AboutMe({
     super.key,
   });
+
+  @override
+  State<AboutMe> createState() => _AboutMeState();
+}
+
+class _AboutMeState extends State<AboutMe> {
+  final List<String> links = [
+    "https://www.uv.mx/coatza/admon/nosotros/pre-rec/",
+    "https://www.uv.mx/coatza/admon/general/xvii-expo-nac-empren-anfeca-23/",
+    "https://www.uv.mx/coatza/general/innovacion-y-desarrollo-en-el-sur-de-veracruz/",
+    "https://www.uv.mx/prensa/general/uv-region-coatzacoalcos-destaco-en-xvi-maraton-de-conocimientos-anfeca/",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +45,10 @@ class AboutMe extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 20.toVerticalGap,
+                Text(
+                  Constants.kAboutMeText,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
                 Text(
                   Constants.kAboutMeText,
                   style: Theme.of(context).textTheme.bodyLarge,

@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
 
   AppBar appBar(context, ThemeData theme, bool isMobile) => AppBar(
         backgroundColor: isMobile
-            ? theme.scaffoldBackgroundColor.withOpacity(0.8)
+            ? theme.scaffoldBackgroundColor.withValues(alpha: 0.8)
             : Colors.transparent,
         elevation: 0,
         title: !isMobile
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
                     horizontal: AppSpacing.large,
                   ),
                   decoration: BoxDecoration(
-                    color: theme.scaffoldBackgroundColor.withOpacity(0.8),
+                    color: theme.scaffoldBackgroundColor.withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(40),
                     border: Border.all(
                       color: AppColors.border,

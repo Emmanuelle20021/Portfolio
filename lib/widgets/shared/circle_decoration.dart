@@ -18,7 +18,7 @@ class CircleDecoration extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Theme.of(context).colorScheme.secondary.withOpacity(.6),
+                Theme.of(context).colorScheme.secondary.withValues(alpha: 0.6),
                 Colors.transparent,
               ],
             ),

@@ -55,33 +55,9 @@ class Projects extends StatelessWidget {
                   ),
                   AppSpacing.medium.toHorizontalGap,
                   Expanded(
-                    child: Stack(
-                      children: [
-                        ListView(
-                          physics: NeverScrollableScrollPhysics(),
-                          children: Constants.kProjects,
-                        ),
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          left: 0,
-                          child: Container(
-                            height: 100,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                colors: [
-                                  Theme.of(context).scaffoldBackgroundColor,
-                                  Theme.of(context)
-                                      .scaffoldBackgroundColor
-                                      .withOpacity(0),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: ListView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: Constants.kProjects,
                     ),
                   ),
                 ],

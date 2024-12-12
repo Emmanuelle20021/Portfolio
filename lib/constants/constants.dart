@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:portfolio/models/experience.dart';
+import 'package:portfolio/models/projects.dart';
 import 'package:portfolio/utils/int_to_gap.dart';
 
 import '../widgets/shared/habilities_card.dart';
@@ -136,26 +138,67 @@ class Constants {
   ];
 
   static List<Widget> get kProjects => [
-        const ProjectCard(
-          title: 'Vitium',
-          image: 'assets/images/vitium_banner.png',
-          description:
-              'Vitium es una aplicación móvil desarrollada con Flutter y Firebase. Es una bolsa de trabajo para personas con discapasidad. Permite a los usuarios buscar y postularse a ofertas de empleo, así como a los empleadores publicar vacantes y gestionar postulaciones.',
-          urlGit: 'https://github.com/Emmanuelle20021/vitium-app',
-          urlFigma:
-              'https://www.figma.com/design/FXmWufDgVBtI3OIZcMZJd6/Vitium_v3?node-id=7-24946&t=Arqk5i0hyxm1iAwy-1',
+        ProjectCard(
+          project: Project(
+            title: 'Vitium',
+            images: ['assets/images/vitium_banner.png'],
+            description:
+                'Vitium es una aplicación móvil desarrollada con Flutter y Firebase. Es una bolsa de trabajo para personas con discapasidad. Permite a los usuarios buscar y postularse a ofertas de empleo, así como a los empleadores publicar vacantes y gestionar postulaciones.',
+            urlGit: 'https://github.com/Emmanuelle20021/vitium-app',
+            urlFigma:
+                'https://www.figma.com/design/FXmWufDgVBtI3OIZcMZJd6/Vitium_v3?node-id=7-24946&t=Arqk5i0hyxm1iAwy-1',
+          ),
         ),
-        const ProjectCard(
-          title: 'StoreMate',
-          image: 'assets/images/store_mate.png',
-          description:
-              'StoreMate es una innovadora aplicación móvil diseñada para empoderar a propietarios de pequeños negocios al proporcionarles una solución completa de punto de venta en la palma de su mano.',
-          urlGit:
-              'StoreMate es una innovadora aplicación móvil diseñada para empoderar a propietarios de pequeños negocios al proporcionarles una solución completa de punto de venta en la palma de su mano.',
-          urlFigma:
-              'https://www.figma.com/design/VXqSW0L8sWF0pSLGmiEf8u/Shop-Mate?node-id=0-1&t=ClaNV7U23HCDyKgr-1',
+        ProjectCard(
+          project: Project(
+            title: 'StoreMate',
+            images: ['assets/images/store_mate.png'],
+            description:
+                'StoreMate es una innovadora aplicación móvil diseñada para empoderar a propietarios de pequeños negocios al proporcionarles una solución completa de punto de venta en la palma de su mano.',
+            urlGit: 'https://github.com/Emmanuelle20021/StoreMate',
+            urlFigma:
+                'https://www.figma.com/design/VXqSW0L8sWF0pSLGmiEf8u/Shop-Mate?node-id=0-1&t=ClaNV7U23HCDyKgr-1',
+          ),
         ),
       ];
+
+  static const List<Experience> kExperiences = [
+    Experience(
+      company: "Vitium",
+      position: "Líder de Desarrollo",
+      date: "Enero 2022 - Presente",
+      description:
+          "Dirijo un equipo en el desarrollo de una bolsa de trabajo inclusiva que obtuvo premios internacionales, integrando mapas, Firebase y arquitectura limpia.",
+    ),
+    Experience(
+      company: "Freelancer Remoto",
+      position: "Desarrollador Web y Móvil",
+      date: "2023 - 2024",
+      description:
+          "Colaboré en proyectos para empresas, incluyendo desarrollo de plataformas de e-learning y aplicaciones móviles personalizadas.",
+    ),
+    Experience(
+      company: "No Country",
+      position: "Desarrollador Flutter",
+      date: "2023",
+      description:
+          "Desarrollé una plataforma e-learning utilizando Flutter y patrones de diseño robustos.",
+    ),
+    Experience(
+      company: "Proyectos Personales",
+      position: "Desarrollador Flutter",
+      date: "2022 - Presente",
+      description:
+          "Cree aplicaciones como un punto de venta con SQLite y una bolsa de trabajo, integrando funcionalidades avanzadas.",
+    ),
+    Experience(
+      company: "Prácticas Universitarias",
+      position: "Desarrollador Web Remoto",
+      date: "2021 - 2022",
+      description:
+          "Desarrollé soluciones web mientras adquiría experiencia en trabajo remoto y metodologías ágiles.",
+    ),
+  ];
 }
 
 class AppTextStyles {

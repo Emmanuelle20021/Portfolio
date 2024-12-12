@@ -2,26 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:portfolio/constants/constants.dart';
 import 'package:portfolio/utils/int_to_gap.dart';
+import 'package:portfolio/widgets/shared/social_media_icon_button.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../models/projects.dart';
 
 class ProjectCard extends StatelessWidget {
   const ProjectCard({
     super.key,
-    required this.title,
-    required this.image,
-    required this.description,
-    required this.urlGit,
-    this.urlPlaystore,
-    this.urlFigma,
+    required this.project,
   });
 
-  final String title;
-  final String image;
-  final String description;
-  final String urlGit;
-  final String? urlPlaystore;
-  final String? urlFigma;
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +36,7 @@ class ProjectCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Image.asset(
-                      image,
+                      project.images[0],
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -58,12 +51,12 @@ class ProjectCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          title,
+                          project.title,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         10.toVerticalGap,
                         Text(
-                          description,
+                          project.description,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall,
@@ -74,7 +67,9 @@ class ProjectCard extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             OutlinedButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                createDialog(context);
+                              },
                               label: Text('Ver detalles'),
                               iconAlignment: IconAlignment.end,
                               icon: Icon(
@@ -94,32 +89,32 @@ class ProjectCard extends StatelessWidget {
         Column(
           children: [
             Link(
-              uri: Uri.parse(urlGit),
+              uri: Uri.parse(project.urlGit),
               builder: (context, followLink) => IconButton(
-                onPressed: () => _launchURL(urlGit),
+                onPressed: () => _launchURL(project.urlGit),
                 icon: const Icon(
                   BoxIcons.bxl_github,
                 ),
               ),
             ),
-            if (urlPlaystore != null) ...[
+            if (project.urlPlaystore != null) ...[
               10.toHorizontalGap,
               Link(
-                uri: Uri.parse(urlPlaystore!),
+                uri: Uri.parse(project.urlPlaystore!),
                 builder: (context, followLink) => IconButton(
-                  onPressed: () => _launchURL(urlPlaystore!),
+                  onPressed: () => _launchURL(project.urlPlaystore!),
                   icon: const Icon(
                     BoxIcons.bxl_play_store,
                   ),
                 ),
               ),
             ],
-            if (urlFigma != null) ...[
+            if (project.urlFigma != null) ...[
               10.toHorizontalGap,
               Link(
-                uri: Uri.parse(urlFigma!),
+                uri: Uri.parse(project.urlFigma!),
                 builder: (context, followLink) => IconButton(
-                  onPressed: () => _launchURL(urlFigma!),
+                  onPressed: () => _launchURL(project.urlFigma!),
                   icon: const Icon(BoxIcons.bxl_figma),
                 ),
               ),
@@ -127,6 +122,79 @@ class ProjectCard extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Future<dynamic> createDialog(BuildContext context) {
+    return showAdaptiveDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(project.title),
+        content: Container(
+          constraints: BoxConstraints(
+            maxWidth: 600,
+          ),
+          child: Column(
+            spacing: AppSpacing.medium,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 200,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: AppSpacing.small,
+                    children: [
+                      for (var image in project.images) ...[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            image,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              SingleChildScrollView(
+                child: Text(project.description),
+              ),
+              Row(
+                children: [
+                  SocialMediaIconButton(
+                    icon: BoxIcons.bxl_github,
+                    url: project.urlGit,
+                  ),
+                  if (project.urlPlaystore != null) ...[
+                    10.toHorizontalGap,
+                    SocialMediaIconButton(
+                      icon: BoxIcons.bxl_play_store,
+                      url: project.urlPlaystore!,
+                    ),
+                  ],
+                  if (project.urlFigma != null) ...[
+                    10.toHorizontalGap,
+                    SocialMediaIconButton(
+                      icon: BoxIcons.bxl_figma,
+                      url: project.urlFigma!,
+                    ),
+                  ],
+                ],
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('Cerrar'),
+          ),
+        ],
+      ),
     );
   }
 
