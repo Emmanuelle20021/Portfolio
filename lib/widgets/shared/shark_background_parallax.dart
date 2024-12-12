@@ -14,16 +14,9 @@ class SharkBackgroundParallax extends StatefulWidget {
 }
 
 class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
-  double _offset = 0.0;
-
   @override
   void initState() {
     super.initState();
-    widget.scrollController.addListener(() {
-      setState(() {
-        _offset = widget.scrollController.offset;
-      });
-    });
   }
 
   @override
@@ -46,37 +39,58 @@ class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
             ),
             Positioned(
               bottom: constraints.maxHeight * 0.15,
-              left: constraints.maxWidth * 0.15 + _offset,
-              child: SvgPicture.asset(
-                Constants.kSharkPath,
-                width: constraints.maxWidth * 0.2,
-                colorFilter: ColorFilter.mode(
-                  AppColors.border,
-                  BlendMode.srcIn,
+              left: constraints.maxWidth * 0.15,
+              child: AnimatedBuilder(
+                animation: widget.scrollController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(widget.scrollController.offset * 0.5, 0),
+                  child: child,
+                ),
+                child: SvgPicture.asset(
+                  Constants.kSharkPath,
+                  width: constraints.maxWidth * 0.2,
+                  colorFilter: ColorFilter.mode(
+                    AppColors.border,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
             Positioned(
               bottom: 0,
-              left: 0 + _offset * 0.7,
-              child: SvgPicture.asset(
-                Constants.kSharkPath,
-                width: constraints.maxWidth * 0.2,
-                colorFilter: ColorFilter.mode(
-                  AppColors.border,
-                  BlendMode.srcIn,
+              left: 0,
+              child: AnimatedBuilder(
+                animation: widget.scrollController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(widget.scrollController.offset * 0.7, 0),
+                  child: child,
+                ),
+                child: SvgPicture.asset(
+                  Constants.kSharkPath,
+                  width: constraints.maxWidth * 0.2,
+                  colorFilter: ColorFilter.mode(
+                    AppColors.border,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
             Positioned(
               bottom: constraints.maxHeight * 0.3,
-              left: 50 + _offset * 0.5,
-              child: SvgPicture.asset(
-                Constants.kSharkPath,
-                width: constraints.maxWidth * 0.2,
-                colorFilter: ColorFilter.mode(
-                  AppColors.border,
-                  BlendMode.srcIn,
+              left: 50,
+              child: AnimatedBuilder(
+                animation: widget.scrollController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(widget.scrollController.offset * 0.5, 0),
+                  child: child,
+                ),
+                child: SvgPicture.asset(
+                  Constants.kSharkPath,
+                  width: constraints.maxWidth * 0.2,
+                  colorFilter: ColorFilter.mode(
+                    AppColors.border,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
