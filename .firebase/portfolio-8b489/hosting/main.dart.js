@@ -21324,7 +21324,7 @@ A.a9N.prototype={
 $1(a){var s=A.d1().b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/36335019a8eab588c3c2ea783c618d90505be233/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/a18df97ca57a249df5d8d68cd0820600223ce262/":s)+a},
 $S:78}
 A.Q7.prototype={
 cj(){B.c.a0(this.a.a.save())},
@@ -66603,7 +66603,7 @@ B.dt=new A.fo(3,"hidden")
 B.f9=new A.fo(4,"paused")
 B.fa=new A.qY(0,"polite")
 B.fb=new A.qY(1,"assertive")
-B.wm=new A.nq("assets/images/profile_Image.jpeg",null,null)
+B.wm=new A.nq("assets/images/profile_Image.png",null,null)
 B.G=new A.ns(0,"up")
 B.bq=new A.ns(1,"right")
 B.D=new A.ns(2,"down")
