@@ -69339,7 +69339,7 @@ A.Z_.prototype={
 $0(){var s=0,r=A.O(t.H)
 var $async$$0=A.P(function(a,b){if(a===1)return A.L(b,r)
 while(true)switch(s){case 0:s=2
-return A.T(A.Dn(A.ee("https://www.linkedin.com/in/emmanu20021/",0,null),B.eL),$async$$0)
+return A.T(A.Dn(A.ee("https://www.linkedin.com/in/javier-emmanuelle-hipolito-mora/",0,null),B.eL),$async$$0)
 case 2:return A.M(null,r)}})
 return A.N($async$$0,r)},
 $S:14}

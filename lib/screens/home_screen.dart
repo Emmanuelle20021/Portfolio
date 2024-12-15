@@ -131,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   onTap: () async {
                     Uri uri = Uri.parse(
-                      'https://www.linkedin.com/in/emmanu20021/',
+                      'https://www.linkedin.com/in/javier-emmanuelle-hipolito-mora/',
                     );
                     await launchUrl(uri);
                   },
