@@ -13,15 +13,15 @@ import '../widgets/shared/social_media_icon_button.dart';
 class Constants {
   Constants._();
 
-  static const String kSharkPath = 'assets/parallax/Shark.svg';
-  static const String kProfileImagePath = 'assets/images/profile_Image.png';
-  static const String kVitiumBannerPath = 'assets/images/vitium_banner.png';
-  static const String kStoreMatePath = 'assets/images/store_mate.png';
-  static const String kRockPath = 'assets/parallax/Rock.svg';
+  static const String kSharkPath = 'assets/parallax/Shark.webp';
+  static const String kProfileImagePath = 'assets/images/profile_Image.webp';
+  static const String kVitiumBannerPath = 'assets/images/vitium_banner.webp';
+  static const String kStoreMatePath = 'assets/images/store_mate.webp';
+  static const String kRockPath = 'assets/parallax/Rock.webp';
   static const String kKelp1Path = 'assets/parallax/kelp_1.svg';
   static const String kKelp2Path = 'assets/parallax/kelp_2.svg';
-  static const String kKelpGroupPath = 'assets/parallax/kelp_group.svg';
-  static const String kRockGroupPath = 'assets/parallax/rock_group.svg';
+  static const String kKelpGroupPath = 'assets/parallax/kelp_group.webp';
+  static const String kRockGroupPath = 'assets/parallax/rock_group.webp';
 
   static const String kAppName = 'Emma Mora Dev';
   static Widget kActionsAppBar = Row(
@@ -141,7 +141,7 @@ class Constants {
         ProjectCard(
           project: Project(
             title: 'Vitium',
-            images: ['assets/images/vitium_banner.png'],
+            images: [Constants.kVitiumBannerPath],
             description:
                 'Vitium es una aplicación móvil desarrollada con Flutter y Firebase. Es una bolsa de trabajo para personas con discapasidad. Permite a los usuarios buscar y postularse a ofertas de empleo, así como a los empleadores publicar vacantes y gestionar postulaciones.',
             urlGit: 'https://github.com/Emmanuelle20021/vitium-app',
@@ -152,7 +152,7 @@ class Constants {
         ProjectCard(
           project: Project(
             title: 'StoreMate',
-            images: ['assets/images/store_mate.png'],
+            images: [Constants.kStoreMatePath],
             description:
                 'StoreMate es una innovadora aplicación móvil diseñada para empoderar a propietarios de pequeños negocios al proporcionarles una solución completa de punto de venta en la palma de su mano.',
             urlGit: 'https://github.com/Emmanuelle20021/StoreMate',

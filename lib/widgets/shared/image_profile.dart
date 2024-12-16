@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:portfolio/constants/constants.dart';
 
 class ImageProfile extends StatelessWidget {
   const ImageProfile({
@@ -26,7 +27,7 @@ class ImageProfile extends StatelessWidget {
       child: const CircleAvatar(
         radius: 100,
         backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage('assets/images/profile_Image.png'),
+        backgroundImage: AssetImage(Constants.kProfileImagePath),
       ),
     );
   }

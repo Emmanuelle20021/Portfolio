@@ -14,12 +14,12 @@ class Projects extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(
         maxWidth: 1000,
-        minHeight: height * 0.5,
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.cardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +40,7 @@ class Projects extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: height,
+              height: height * 0.8, // Limitar la altura de la sección
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,8 +55,12 @@ class Projects extends StatelessWidget {
                   ),
                   AppSpacing.medium.toHorizontalGap,
                   Expanded(
+                    // Expande el ListView para ocupar todo el espacio disponible
                     child: ListView(
-                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap:
+                          false, // Permite que el ListView ocupe todo el espacio
+                      physics:
+                          AlwaysScrollableScrollPhysics(), // Hacer que el ListView sea siempre desplazable
                       children: Constants.kProjects,
                     ),
                   ),

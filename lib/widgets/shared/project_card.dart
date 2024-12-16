@@ -38,6 +38,9 @@ class ProjectCard extends StatelessWidget {
                     child: Image.asset(
                       project.images[0],
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => const Icon(
+                        BoxIcons.bx_error,
+                      ),
                     ),
                   ),
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/foundation.dart'; // Para kIsWeb
 
 import '../../constants/constants.dart';
 
@@ -14,9 +14,11 @@ class SharkBackgroundParallax extends StatefulWidget {
 }
 
 class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
-  @override
-  void initState() {
-    super.initState();
+  double getParallaxOffset(double offset) {
+    // Si es Web, se aumenta el efecto de desplazamiento para hacerlo más visible
+    return kIsWeb
+        ? offset * 0.5
+        : offset * 0.2; // Cambia el factor según la plataforma
   }
 
   @override
@@ -28,13 +30,10 @@ class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
             Positioned(
               left: 0,
               bottom: (constraints.minHeight * 0.2) * -1,
-              child: SvgPicture.asset(
+              child: Image.asset(
                 Constants.kRockPath,
                 width: constraints.maxWidth * 0.6,
-                colorFilter: ColorFilter.mode(
-                  AppColors.sharks,
-                  BlendMode.srcIn,
-                ),
+                color: AppColors.sharks,
               ),
             ),
             Positioned(
@@ -42,17 +41,17 @@ class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
               left: constraints.maxWidth * 0.15,
               child: AnimatedBuilder(
                 animation: widget.scrollController,
-                builder: (context, child) => Transform.translate(
-                  offset: Offset(widget.scrollController.offset * 0.5, 0),
-                  child: child,
-                ),
-                child: SvgPicture.asset(
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(
+                        getParallaxOffset(widget.scrollController.offset), 0),
+                    child: child,
+                  );
+                },
+                child: Image.asset(
                   Constants.kSharkPath,
                   width: constraints.maxWidth * 0.2,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.border,
-                    BlendMode.srcIn,
-                  ),
+                  color: AppColors.border,
                 ),
               ),
             ),
@@ -61,17 +60,18 @@ class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
               left: 0,
               child: AnimatedBuilder(
                 animation: widget.scrollController,
-                builder: (context, child) => Transform.translate(
-                  offset: Offset(widget.scrollController.offset * 0.7, 0),
-                  child: child,
-                ),
-                child: SvgPicture.asset(
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(
+                        getParallaxOffset(widget.scrollController.offset) * 1.5,
+                        0),
+                    child: child,
+                  );
+                },
+                child: Image.asset(
                   Constants.kSharkPath,
                   width: constraints.maxWidth * 0.2,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.border,
-                    BlendMode.srcIn,
-                  ),
+                  color: AppColors.border,
                 ),
               ),
             ),
@@ -80,30 +80,27 @@ class _SharkBackgroundParallaxState extends State<SharkBackgroundParallax> {
               left: 50,
               child: AnimatedBuilder(
                 animation: widget.scrollController,
-                builder: (context, child) => Transform.translate(
-                  offset: Offset(widget.scrollController.offset * 0.5, 0),
-                  child: child,
-                ),
-                child: SvgPicture.asset(
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(
+                        getParallaxOffset(widget.scrollController.offset), 0),
+                    child: child,
+                  );
+                },
+                child: Image.asset(
                   Constants.kSharkPath,
                   width: constraints.maxWidth * 0.2,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.border,
-                    BlendMode.srcIn,
-                  ),
+                  color: AppColors.border,
                 ),
               ),
             ),
             Positioned(
               right: 0,
               bottom: (constraints.minHeight * 0.2) * -1,
-              child: SvgPicture.asset(
+              child: Image.asset(
                 Constants.kRockPath,
                 width: constraints.maxWidth * 0.50,
-                colorFilter: ColorFilter.mode(
-                  AppColors.surface,
-                  BlendMode.srcIn,
-                ),
+                color: AppColors.surface,
               ),
             ),
             Positioned(
@@ -133,7 +130,7 @@ class KelpGroup extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(
         2,
-        (_) => SvgPicture.asset(
+        (_) => Image.asset(
           Constants.kKelpGroupPath,
           width: size.width * 0.5,
         ),
@@ -152,7 +149,7 @@ class RockGroup extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(
         2,
-        (_) => SvgPicture.asset(
+        (_) => Image.asset(
           Constants.kRockGroupPath,
           width: size.width * 0.5,
         ),

@@ -157,14 +157,10 @@ class ExpereincesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: AppSpacing.cardPadding,
-      ),
-      height: MediaQuery.of(context).size.height,
       constraints: BoxConstraints(
-        minHeight: 500,
         maxWidth: 1000,
       ),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.cardPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -174,17 +170,17 @@ class ExpereincesSection extends StatelessWidget {
             'Experiencia',
             style: Theme.of(context).textTheme.headlineLarge,
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: Constants.kExperiences.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.only(
-                  bottom: AppSpacing.small,
-                ),
-                child: ExperienceCard(
-                  theme: theme,
-                  experience: Constants.kExperiences[index],
-                ),
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: Constants.kExperiences.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(
+                bottom: AppSpacing.small,
+              ),
+              child: ExperienceCard(
+                theme: theme,
+                experience: Constants.kExperiences[index],
               ),
             ),
           ),
