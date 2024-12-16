@@ -58,7 +58,7 @@ class Projects extends StatelessWidget {
                     // Expande el ListView para ocupar todo el espacio disponible
                     child: ListView(
                       shrinkWrap:
-                          false, // Permite que el ListView ocupe todo el espacio
+                          true, // Permite que el ListView ocupe todo el espacio
                       physics:
                           NeverScrollableScrollPhysics(), // Hacer que el ListView sea siempre desplazable
                       children: Constants.kProjects,

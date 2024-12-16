@@ -49,10 +49,6 @@ class _AboutMeState extends State<AboutMe> {
                   Constants.kAboutMeText,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                Text(
-                  Constants.kAboutMeText,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
               ],
             ),
           ),
