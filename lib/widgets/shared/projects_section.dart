@@ -39,33 +39,30 @@ class Projects extends StatelessWidget {
                 // ),
               ],
             ),
-            SizedBox(
-              height: height * 0.8, // Limitar la altura de la sección
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    width: 5,
-                    height: height,
-                    decoration: BoxDecoration(
-                      color: AppColors.border,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  width: 5,
+                  height: height,
+                  decoration: BoxDecoration(
+                    color: AppColors.border,
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  AppSpacing.medium.toHorizontalGap,
-                  Expanded(
-                    // Expande el ListView para ocupar todo el espacio disponible
-                    child: ListView(
-                      shrinkWrap:
-                          true, // Permite que el ListView ocupe todo el espacio
-                      physics:
-                          NeverScrollableScrollPhysics(), // Hacer que el ListView sea siempre desplazable
-                      children: Constants.kProjects,
-                    ),
+                ),
+                AppSpacing.medium.toHorizontalGap,
+                Expanded(
+                  // Expande el ListView para ocupar todo el espacio disponible
+                  child: ListView(
+                    shrinkWrap:
+                        true, // Permite que el ListView ocupe todo el espacio
+                    physics:
+                        NeverScrollableScrollPhysics(), // Hacer que el ListView sea siempre desplazable
+                    children: Constants.kProjects,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

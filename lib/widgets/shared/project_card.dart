@@ -8,13 +8,26 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/projects.dart';
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   const ProjectCard({
     super.key,
     required this.project,
   });
 
   final Project project;
+
+  @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  @override
+  void initState() {
+    super.initState();
+    for (String image in widget.project.images) {
+      precacheImage(AssetImage(image), context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +48,8 @@ class ProjectCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.asset(
-                      project.images[0],
+                    child: Image(
+                      image: AssetImage(widget.project.images.first),
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => const Icon(
                         BoxIcons.bx_error,
@@ -54,12 +67,12 @@ class ProjectCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          project.title,
+                          widget.project.title,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         10.toVerticalGap,
                         Text(
-                          project.description,
+                          widget.project.description,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall,
@@ -92,32 +105,32 @@ class ProjectCard extends StatelessWidget {
         Column(
           children: [
             Link(
-              uri: Uri.parse(project.urlGit),
+              uri: Uri.parse(widget.project.urlGit),
               builder: (context, followLink) => IconButton(
-                onPressed: () => _launchURL(project.urlGit),
+                onPressed: () => _launchURL(widget.project.urlGit),
                 icon: const Icon(
                   BoxIcons.bxl_github,
                 ),
               ),
             ),
-            if (project.urlPlaystore != null) ...[
+            if (widget.project.urlPlaystore != null) ...[
               10.toHorizontalGap,
               Link(
-                uri: Uri.parse(project.urlPlaystore!),
+                uri: Uri.parse(widget.project.urlPlaystore!),
                 builder: (context, followLink) => IconButton(
-                  onPressed: () => _launchURL(project.urlPlaystore!),
+                  onPressed: () => _launchURL(widget.project.urlPlaystore!),
                   icon: const Icon(
                     BoxIcons.bxl_play_store,
                   ),
                 ),
               ),
             ],
-            if (project.urlFigma != null) ...[
+            if (widget.project.urlFigma != null) ...[
               10.toHorizontalGap,
               Link(
-                uri: Uri.parse(project.urlFigma!),
+                uri: Uri.parse(widget.project.urlFigma!),
                 builder: (context, followLink) => IconButton(
-                  onPressed: () => _launchURL(project.urlFigma!),
+                  onPressed: () => _launchURL(widget.project.urlFigma!),
                   icon: const Icon(BoxIcons.bxl_figma),
                 ),
               ),
@@ -132,7 +145,7 @@ class ProjectCard extends StatelessWidget {
     return showAdaptiveDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(project.title),
+        title: Text(widget.project.title),
         content: Container(
           constraints: BoxConstraints(
             maxWidth: 600,
@@ -150,11 +163,11 @@ class ProjectCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: AppSpacing.small,
                     children: [
-                      for (var image in project.images) ...[
+                      for (var image in widget.project.images) ...[
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            image,
+                          child: Image(
+                            image: AssetImage(image),
                             fit: BoxFit.fitHeight,
                           ),
                         ),
@@ -164,26 +177,26 @@ class ProjectCard extends StatelessWidget {
                 ),
               ),
               SingleChildScrollView(
-                child: Text(project.description),
+                child: Text(widget.project.description),
               ),
               Row(
                 children: [
                   SocialMediaIconButton(
                     icon: BoxIcons.bxl_github,
-                    url: project.urlGit,
+                    url: widget.project.urlGit,
                   ),
-                  if (project.urlPlaystore != null) ...[
+                  if (widget.project.urlPlaystore != null) ...[
                     10.toHorizontalGap,
                     SocialMediaIconButton(
                       icon: BoxIcons.bxl_play_store,
-                      url: project.urlPlaystore!,
+                      url: widget.project.urlPlaystore!,
                     ),
                   ],
-                  if (project.urlFigma != null) ...[
+                  if (widget.project.urlFigma != null) ...[
                     10.toHorizontalGap,
                     SocialMediaIconButton(
                       icon: BoxIcons.bxl_figma,
-                      url: project.urlFigma!,
+                      url: widget.project.urlFigma!,
                     ),
                   ],
                 ],
