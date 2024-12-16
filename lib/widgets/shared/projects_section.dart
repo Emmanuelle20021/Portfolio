@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/double_to_gap.dart';
-
 import '../../constants/constants.dart';
 
 class Projects extends StatelessWidget {
@@ -28,24 +27,15 @@ class Projects extends StatelessWidget {
                   'Proyectos',
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
-                // ISSUE: Decidir Si va o no el boton
-                // OutlinedButton.icon(
-                //   onPressed: () {},
-                //   label: Text('Ver proyectos'),
-                //   iconAlignment: IconAlignment.end,
-                //   icon: Icon(
-                //     Icons.arrow_outward_outlined,
-                //   ),
-                // ),
               ],
             ),
             Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Línea vertical
                 Container(
-                  width: 5,
-                  height: height,
+                  width: 5, // Ancho de la línea
+                  height:
+                      height * .8, // Altura relativa, ajustable según necesidad
                   decoration: BoxDecoration(
                     color: AppColors.border,
                     borderRadius: BorderRadius.circular(20),
@@ -53,17 +43,16 @@ class Projects extends StatelessWidget {
                 ),
                 AppSpacing.medium.toHorizontalGap,
                 Expanded(
-                  // Expande el ListView para ocupar todo el espacio disponible
                   child: ListView(
                     shrinkWrap:
                         true, // Permite que el ListView ocupe todo el espacio
                     physics:
-                        NeverScrollableScrollPhysics(), // Hacer que el ListView sea siempre desplazable
+                        NeverScrollableScrollPhysics(), // Evita el desplazamiento
                     children: Constants.kProjects,
                   ),
                 ),
               ],
-            ),
+            )
           ],
         ),
       ),
