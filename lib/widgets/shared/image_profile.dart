@@ -2,21 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:portfolio/constants/constants.dart';
 
-class ImageProfile extends StatefulWidget {
+class ImageProfile extends StatelessWidget {
   const ImageProfile({
     super.key,
   });
-
-  @override
-  State<ImageProfile> createState() => _ImageProfileState();
-}
-
-class _ImageProfileState extends State<ImageProfile> {
-  @override
-  void initState() {
-    super.initState();
-    precacheImage(AssetImage(Constants.kProfileImagePath), context);
-  }
 
   @override
   Widget build(BuildContext context) {

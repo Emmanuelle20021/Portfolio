@@ -8,26 +8,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/projects.dart';
 
-class ProjectCard extends StatefulWidget {
+class ProjectCard extends StatelessWidget {
   const ProjectCard({
     super.key,
     required this.project,
   });
 
   final Project project;
-
-  @override
-  State<ProjectCard> createState() => _ProjectCardState();
-}
-
-class _ProjectCardState extends State<ProjectCard> {
-  @override
-  void initState() {
-    super.initState();
-    for (String image in widget.project.images) {
-      precacheImage(AssetImage(image), context);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +36,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Image(
-                      image: AssetImage(widget.project.images.first),
+                      image: AssetImage(project.images.first),
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => const Icon(
                         BoxIcons.bx_error,
@@ -67,12 +54,12 @@ class _ProjectCardState extends State<ProjectCard> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          widget.project.title,
+                          project.title,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         10.toVerticalGap,
                         Text(
-                          widget.project.description,
+                          project.description,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall,
@@ -105,32 +92,32 @@ class _ProjectCardState extends State<ProjectCard> {
         Column(
           children: [
             Link(
-              uri: Uri.parse(widget.project.urlGit),
+              uri: Uri.parse(project.urlGit),
               builder: (context, followLink) => IconButton(
-                onPressed: () => _launchURL(widget.project.urlGit),
+                onPressed: () => _launchURL(project.urlGit),
                 icon: const Icon(
                   BoxIcons.bxl_github,
                 ),
               ),
             ),
-            if (widget.project.urlPlaystore != null) ...[
+            if (project.urlPlaystore != null) ...[
               10.toHorizontalGap,
               Link(
-                uri: Uri.parse(widget.project.urlPlaystore!),
+                uri: Uri.parse(project.urlPlaystore!),
                 builder: (context, followLink) => IconButton(
-                  onPressed: () => _launchURL(widget.project.urlPlaystore!),
+                  onPressed: () => _launchURL(project.urlPlaystore!),
                   icon: const Icon(
                     BoxIcons.bxl_play_store,
                   ),
                 ),
               ),
             ],
-            if (widget.project.urlFigma != null) ...[
+            if (project.urlFigma != null) ...[
               10.toHorizontalGap,
               Link(
-                uri: Uri.parse(widget.project.urlFigma!),
+                uri: Uri.parse(project.urlFigma!),
                 builder: (context, followLink) => IconButton(
-                  onPressed: () => _launchURL(widget.project.urlFigma!),
+                  onPressed: () => _launchURL(project.urlFigma!),
                   icon: const Icon(BoxIcons.bxl_figma),
                 ),
               ),
@@ -145,7 +132,7 @@ class _ProjectCardState extends State<ProjectCard> {
     return showAdaptiveDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(widget.project.title),
+        title: Text(project.title),
         content: Container(
           constraints: BoxConstraints(
             maxWidth: 600,
@@ -163,7 +150,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: AppSpacing.small,
                     children: [
-                      for (var image in widget.project.images) ...[
+                      for (var image in project.images) ...[
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image(
@@ -177,26 +164,26 @@ class _ProjectCardState extends State<ProjectCard> {
                 ),
               ),
               SingleChildScrollView(
-                child: Text(widget.project.description),
+                child: Text(project.description),
               ),
               Row(
                 children: [
                   SocialMediaIconButton(
                     icon: BoxIcons.bxl_github,
-                    url: widget.project.urlGit,
+                    url: project.urlGit,
                   ),
-                  if (widget.project.urlPlaystore != null) ...[
+                  if (project.urlPlaystore != null) ...[
                     10.toHorizontalGap,
                     SocialMediaIconButton(
                       icon: BoxIcons.bxl_play_store,
-                      url: widget.project.urlPlaystore!,
+                      url: project.urlPlaystore!,
                     ),
                   ],
-                  if (widget.project.urlFigma != null) ...[
+                  if (project.urlFigma != null) ...[
                     10.toHorizontalGap,
                     SocialMediaIconButton(
                       icon: BoxIcons.bxl_figma,
-                      url: widget.project.urlFigma!,
+                      url: project.urlFigma!,
                     ),
                   ],
                 ],
