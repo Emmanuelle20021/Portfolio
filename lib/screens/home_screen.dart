@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                     Icons.open_in_new,
                   ),
                   onTap: () async {
-                    await launchUrlString('mailto:emmanu2002  1@gmail.com');
+                    await launchUrlString('mailto:emmanu20021@gmail.com');
                   },
                 ),
               ),

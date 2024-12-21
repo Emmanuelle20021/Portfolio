@@ -18,7 +18,7 @@ class AppFooter extends StatelessWidget {
         children: [
           Expanded(
             child: AutoSizeText(
-              'ⓒ Javier Emmanuelle Hipólito Mora. Todos los derechos reservados.',
+              'Javier Emmanuelle Hipólito Mora',
               maxLines: 3,
               style: Theme.of(context).textTheme.titleSmall,
             ),

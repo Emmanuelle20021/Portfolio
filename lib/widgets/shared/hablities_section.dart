@@ -1,5 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/utils/int_to_gap.dart';
 
 import '../../constants/constants.dart';
 
@@ -13,15 +13,18 @@ class HabilitiesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 30,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
+        AutoSizeText(
           'Habilidades',
-          style: Theme.of(context).textTheme.displaySmall,
+          minFontSize: 22,
+          maxFontSize: 26,
+          maxLines: 1,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
-        30.toVerticalGap,
         Wrap(
           direction: Axis.horizontal,
           runAlignment: WrapAlignment.spaceBetween,

@@ -40,7 +40,7 @@ class Constants {
   );
 
   static const String kAboutMeText =
-      'Soy un desarrollador Flutter apasionado por crear aplicaciones móviles innovadoras y eficientes. Con experiencia en tecnologías como Dart, Node.js, Firebase, SQL y Git, me especializo en desarrollar soluciones robustas y escalables. Mi enfoque se centra en la creación de interfaces de usuario intuitivas y en la optimización del rendimiento de las aplicaciones.';
+      'Soy un apasionado por crear aplicaciones móviles innovadoras y eficientes. Con experiencia en tecnologías como Dart, Node.js, Firebase, SQL y Git, me especializo en desarrollar soluciones robustas y escalables.';
 
   static List<Widget> kHabilities(context) => [
         HabilitiesCardWidget(

@@ -43,6 +43,9 @@ dependencies:
   flutter_launcher_icons: ^0.14.1
   gradient_borders: ^1.0.1
   flutter_svg: ^2.0.16
+  flutter_link_previewer: ^3.2.2
+  html: ^0.15.5
+  http: ^1.2.2
 
 
 
