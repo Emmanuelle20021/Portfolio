@@ -11,7 +11,7 @@ class Project {
   final String title;
   final List<String> images;
   final String description;
-  final String urlGit;
+  final String? urlGit;
   final String? urlPlaystore;
   final String? urlFigma;
 }

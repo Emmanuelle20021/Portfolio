@@ -91,15 +91,17 @@ class ProjectCard extends StatelessWidget {
         ),
         Column(
           children: [
-            Link(
-              uri: Uri.parse(project.urlGit),
-              builder: (context, followLink) => IconButton(
-                onPressed: () => _launchURL(project.urlGit),
-                icon: const Icon(
-                  BoxIcons.bxl_github,
+            if (project.urlGit != null) ...[
+              Link(
+                uri: Uri.parse(project.urlGit!),
+                builder: (context, followLink) => IconButton(
+                  onPressed: () => _launchURL(project.urlGit!),
+                  icon: const Icon(
+                    BoxIcons.bxl_github,
+                  ),
                 ),
-              ),
-            ),
+              )
+            ],
             if (project.urlPlaystore != null) ...[
               10.toHorizontalGap,
               Link(
@@ -131,73 +133,7 @@ class ProjectCard extends StatelessWidget {
   Future<dynamic> createDialog(BuildContext context) {
     return showAdaptiveDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(project.title),
-        content: Container(
-          constraints: BoxConstraints(
-            maxWidth: 600,
-          ),
-          child: Column(
-            spacing: AppSpacing.medium,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: 200,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    spacing: AppSpacing.small,
-                    children: [
-                      for (var image in project.images) ...[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image(
-                            image: AssetImage(image),
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
-              SingleChildScrollView(
-                child: Text(project.description),
-              ),
-              Row(
-                children: [
-                  SocialMediaIconButton(
-                    icon: BoxIcons.bxl_github,
-                    url: project.urlGit,
-                  ),
-                  if (project.urlPlaystore != null) ...[
-                    10.toHorizontalGap,
-                    SocialMediaIconButton(
-                      icon: BoxIcons.bxl_play_store,
-                      url: project.urlPlaystore!,
-                    ),
-                  ],
-                  if (project.urlFigma != null) ...[
-                    10.toHorizontalGap,
-                    SocialMediaIconButton(
-                      icon: BoxIcons.bxl_figma,
-                      url: project.urlFigma!,
-                    ),
-                  ],
-                ],
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text('Cerrar'),
-          ),
-        ],
-      ),
+      builder: (context) => ProjectDialog(project: project),
     );
   }
 
@@ -208,5 +144,174 @@ class ProjectCard extends StatelessWidget {
     } else {
       throw 'Could not launch $uri';
     }
+  }
+}
+
+class ProjectDialog extends StatefulWidget {
+  const ProjectDialog({
+    super.key,
+    required this.project,
+  });
+
+  final Project project;
+
+  @override
+  State<ProjectDialog> createState() => _ProjectDialogState();
+}
+
+class _ProjectDialogState extends State<ProjectDialog> {
+  int _index = 0;
+  final ScrollController _controller = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    final keys = List.generate(
+      widget.project.images.length,
+      (index) => GlobalKey(),
+    );
+    return AlertDialog(
+      title: Text(widget.project.title),
+      content: Container(
+        constraints: BoxConstraints(
+          maxWidth: 600,
+        ),
+        child: Column(
+          spacing: AppSpacing.medium,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: 200,
+              width: 200,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                spacing: AppSpacing.small,
+                children: [
+                  keys.length > 1
+                      ? ElevatedButton.icon(
+                          onPressed: () {
+                            if (_index > 0) {
+                              setState(() {
+                                _index--;
+                                Scrollable.ensureVisible(
+                                  keys[_index].currentContext!,
+                                  duration: const Duration(
+                                    milliseconds: 500,
+                                  ),
+                                  curve: Curves.easeInOut,
+                                );
+                              });
+                            }
+                          },
+                          label: Icon(
+                            Icons.arrow_back,
+                            size: 30,
+                          ),
+                          style: ButtonStyle(
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                            ),
+                            backgroundColor: WidgetStateProperty.all(
+                              AppColors.background.withAlpha(90),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _controller,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: widget.project.images.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding:
+                              const EdgeInsets.only(right: AppSpacing.small),
+                          child: ClipRRect(
+                            key: keys[index],
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image(
+                              image: AssetImage(widget.project.images[index]),
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  keys.length > 1
+                      ? ElevatedButton.icon(
+                          onPressed: () {
+                            if (_index < keys.length - 1 &&
+                                _controller.position.maxScrollExtent != 0) {
+                              setState(() {
+                                _index++;
+                                Scrollable.ensureVisible(
+                                  keys[_index].currentContext!,
+                                  duration: const Duration(
+                                    milliseconds: 500,
+                                  ),
+                                  curve: Curves.easeInOut,
+                                );
+                              });
+                            }
+                          },
+                          label: Icon(
+                            Icons.arrow_forward,
+                            size: 30,
+                          ),
+                          style: ButtonStyle(
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                            ),
+                            backgroundColor: WidgetStateProperty.all(
+                              AppColors.background.withAlpha(90),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              child: Text(widget.project.description),
+            ),
+            Row(
+              children: [
+                if (widget.project.urlGit != null) ...[
+                  SocialMediaIconButton(
+                    icon: BoxIcons.bxl_github,
+                    url: widget.project.urlGit!,
+                  )
+                ],
+                if (widget.project.urlPlaystore != null) ...[
+                  10.toHorizontalGap,
+                  SocialMediaIconButton(
+                    icon: BoxIcons.bxl_play_store,
+                    url: widget.project.urlPlaystore!,
+                  ),
+                ],
+                if (widget.project.urlFigma != null) ...[
+                  10.toHorizontalGap,
+                  SocialMediaIconButton(
+                    icon: BoxIcons.bxl_figma,
+                    url: widget.project.urlFigma!,
+                  ),
+                ],
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text('Cerrar'),
+        ),
+      ],
+    );
   }
 }

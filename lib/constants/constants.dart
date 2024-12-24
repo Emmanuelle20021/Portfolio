@@ -16,6 +16,11 @@ class Constants {
   static const String kSharkPath = 'assets/parallax/Shark.webp';
   static const String kProfileImagePath = 'assets/images/profile_Image.webp';
   static const String kVitiumBannerPath = 'assets/images/vitium_banner.webp';
+  static const String kLearndid_1Path = 'assets/images/Learndid_Home.webp';
+  static const String kLearndid_2Path =
+      'assets/images/Course_lecctions_learndid.webp';
+  static const String kServinet_1Path = 'assets/images/Comunicados.webp';
+  static const String kServinet_2Path = 'assets/images/Nóminas.webp';
   static const String kStoreMatePath = 'assets/images/store_mate.webp';
   static const String kRockPath = 'assets/parallax/Rock.webp';
   static const String kKelp1Path = 'assets/parallax/kelp_1.svg';
@@ -160,29 +165,35 @@ class Constants {
                 'https://www.figma.com/design/VXqSW0L8sWF0pSLGmiEf8u/Shop-Mate?node-id=0-1&t=ClaNV7U23HCDyKgr-1',
           ),
         ),
+        ProjectCard(
+          project: Project(
+            title: 'Learndid',
+            images: [Constants.kLearndid_1Path, Constants.kLearndid_2Path],
+            description:
+                'Learndid es una aplicación móvil desarrollada con Flutter y Firebase. Es una plataforma de e-learning que permite a los usuarios aprender sobre diferentes temas a través de cursos y lecciones.',
+            urlGit: 'https://github.com/No-Country-simulation/c21-75-dart',
+            urlFigma: null,
+          ),
+        ),
+        ProjectCard(
+          project: Project(
+            title: 'Servinet',
+            images: [Constants.kServinet_1Path, Constants.kServinet_2Path],
+            description:
+                'Una PWA desarrollada en angular, es una intranet para la gestión de elementos administrativos empresariales , ayudo a optimizar procesos como gestión de vacaciones y la firma de nominas, además de mostrar comunicados relevantes para los empleados por categoría.',
+            urlGit: null,
+            urlFigma: null,
+          ),
+        ),
       ];
 
   static const List<Experience> kExperiences = [
     Experience(
-      company: "Vitium",
-      position: "Líder de Desarrollo",
-      date: "Enero 2022 - Presente",
-      description:
-          "Dirijo un equipo en el desarrollo de una bolsa de trabajo inclusiva que obtuvo premios internacionales, integrando mapas, Firebase y arquitectura limpia.",
-    ),
-    Experience(
       company: "Freelancer Remoto",
       position: "Desarrollador Web y Móvil",
-      date: "2023 - 2024",
+      date: "2023 - Presente",
       description:
-          "Colaboré en proyectos para empresas, incluyendo desarrollo de plataformas de e-learning y aplicaciones móviles personalizadas.",
-    ),
-    Experience(
-      company: "No Country",
-      position: "Desarrollador Flutter",
-      date: "2023",
-      description:
-          "Desarrollé una plataforma e-learning utilizando Flutter y patrones de diseño robustos.",
+          "Colaboré en proyectos para empresas, incluyendo desarrollo de plataformas de e-learning, aplicaciones móviles personalizadas y arreglos en aplicaciones ya desarrolladas.",
     ),
     Experience(
       company: "Proyectos Personales",
@@ -190,6 +201,20 @@ class Constants {
       date: "2022 - Presente",
       description:
           "Cree aplicaciones como un punto de venta con SQLite y una bolsa de trabajo, integrando funcionalidades avanzadas.",
+    ),
+    Experience(
+      company: "Vitium",
+      position: "Líder de Desarrollo",
+      date: "Enero 2022 - Noviembre 2024",
+      description:
+          "Dirijo un equipo en el desarrollo de una bolsa de trabajo inclusiva que obtuvo premios internacionales, integrando mapas, Firebase y arquitectura limpia.",
+    ),
+    Experience(
+      company: "No Country",
+      position: "Desarrollador Flutter",
+      date: "Agosto 2024 - Octubre 2024",
+      description:
+          "Desarrollé una plataforma e-learning utilizando Flutter y patrones de diseño robustos.",
     ),
     Experience(
       company: "Prácticas Universitarias",
