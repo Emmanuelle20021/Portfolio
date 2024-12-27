@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/double_to_gap.dart';
-import 'package:portfolio/utils/int_to_gap.dart';
 import 'package:portfolio/widgets/shared/hablities_section.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,14 +18,6 @@ class AboutMe extends StatefulWidget {
 }
 
 class _AboutMeState extends State<AboutMe> {
-  final List<String> links = [
-    "https://flutter.dev",
-    "https://www.uv.mx/coatza/admon/nosotros/pre-rec/",
-    "https://www.uv.mx/coatza/admon/general/xvii-expo-nac-empren-anfeca-23/",
-    "https://www.uv.mx/coatza/general/innovacion-y-desarrollo-en-el-sur-de-veracruz/",
-    "https://www.uv.mx/prensa/general/uv-region-coatzacoalcos-destaco-en-xvi-maraton-de-conocimientos-anfeca/",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -55,15 +46,6 @@ class _AboutMeState extends State<AboutMe> {
                   Constants.kAboutMeText,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                30.toVerticalGap,
-                AutoSizeText(
-                  'Programación competitiva',
-                  minFontSize: 22,
-                  maxFontSize: 26,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                ProfileSection(),
                 AppSpacing.sectionSpacing.toVerticalGap,
                 HabilitiesSection(),
               ],
@@ -116,19 +98,16 @@ Future<Map<String, dynamic>> fetchOmegaUpProfile(String username) async {
   }
 }
 
-// UI: Profile Card
-class ProfileCard extends StatelessWidget {
-  final String platform;
+class CodeWarsCard extends StatelessWidget {
   final String username;
   final int score;
   final String rank;
 
-  const ProfileCard({
-    required this.platform,
+  const CodeWarsCard({
+    super.key,
     required this.username,
     required this.score,
     required this.rank,
-    super.key,
   });
 
   @override
@@ -138,21 +117,181 @@ class ProfileCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              platform,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      color: const Color.fromARGB(255, 16, 27, 35),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+              color: Colors.red,
             ),
-            SizedBox(height: 8),
-            Text('Username: $username'),
-            Text('Score: $score'),
-            Text('Rank: $rank'),
-          ],
-        ),
+            constraints: BoxConstraints(
+              maxWidth: 300,
+            ),
+            width: double.infinity,
+            child: ClipRRect(
+              clipBehavior: Clip.antiAlias,
+              borderRadius: BorderRadius.all(Radius.circular(500)),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/95460842?v=4&size=64',
+                height: 50,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  username,
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+                Text(
+                  'Perfil de Codewars',
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: Colors.red,
+                    ),
+                    Text(
+                      'Puntuación: $score',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.code,
+                      color: Colors.red,
+                    ),
+                    Text(
+                      'Rango: $rank',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class OmegaUpCard extends StatelessWidget {
+  final String username;
+  final int problemsSolved;
+  final String rank;
+
+  const OmegaUpCard({
+    super.key,
+    required this.username,
+    required this.problemsSolved,
+    required this.rank,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      color: Colors.white,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+              color: Colors.blue,
+            ),
+            constraints: BoxConstraints(
+              maxWidth: 300,
+            ),
+            width: double.infinity,
+            child: ClipRRect(
+              clipBehavior: Clip.antiAlias,
+              borderRadius: BorderRadius.all(Radius.circular(500)),
+              child: Image.network(
+                'https://secure.gravatar.com/avatar/abb2c02c8624944d28f160418cc4771e?s=92',
+                height: 50,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  username,
+                  style: textTheme.displaySmall!.copyWith(
+                    color: AppColors.background,
+                  ),
+                ),
+                Text(
+                  'Perfil de OmegaUp',
+                  style: textTheme.headlineMedium!.copyWith(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: AppSpacing.small,
+                  children: [
+                    Icon(
+                      Icons.code,
+                      color: Colors.blue,
+                    ),
+                    Text(
+                      'Problemas resueltos: $problemsSolved',
+                      style: textTheme.bodyMedium!.copyWith(
+                        color: AppColors.surface,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: AppSpacing.small,
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: Colors.blue,
+                    ),
+                    Text(
+                      'Ranking: $rank',
+                      style: textTheme.bodyMedium!.copyWith(
+                        color: AppColors.surface,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -180,8 +319,7 @@ class ProfileSection extends StatelessWidget {
               return Text('Fallo al cargar el perfil de Codewars.');
             }
             final data = snapshot.data!;
-            return ProfileCard(
-              platform: 'Codewars',
+            return CodeWarsCard(
               username: data['username'],
               score: data['honor'],
               rank: data['ranks']['overall']['name'],
@@ -200,10 +338,9 @@ class ProfileSection extends StatelessWidget {
               return Text('Fallo al cargar el perfil de OmegaUp.');
             }
             final data = snapshot.data!;
-            return ProfileCard(
-              platform: 'OmegaUp',
+            return OmegaUpCard(
               username: data['username'] ?? 'emma',
-              score: data['rankinfo']['problems_solved'] ?? 0,
+              problemsSolved: data['rankinfo']['problems_solved'] ?? 0,
               rank: data['rankinfo']['rank']?.toString() ??
                   'N/A', // OmegaUp does not provide rank.
             );
